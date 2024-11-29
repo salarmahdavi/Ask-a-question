@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Ask a question",
+  "version": "1.0",
+  "description": "This Chrome extension enables Verification Specialists to seamlessly post questions and engage in conversations on Slack without leaving their current session. It simplifies workflows by integrating directly with Slack and keeping the process within the browser.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "identity"  
+  ],
+  "oauth2": {
+    "client_id": "14839921698.7579204113414",
+    "scopes": [
+      "users:read",
+      "chat:write"
+    ]
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "http://*/",
+    "https://*/"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

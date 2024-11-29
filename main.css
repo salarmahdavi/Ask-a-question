@@ -1,0 +1,234 @@
+body {
+    font: 12.5px 'Vazirmatn', sans-serif;
+    background-color: #212121;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+a {
+    color: #ffffff;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.user-icon {
+    padding: 8px 15px; /* Increased horizontal padding to adapt to text size */
+    height: auto; /* Adapt height to content */
+    border-radius: 10px; /* More rounded corners */
+    display: inline-block; /* Ensures the element size adapts to its content */
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px; /* Adjust as needed */
+    color: #f59e0b; /* Text color */
+    background-color: #423520; /* Background color */
+    border: none;
+    outline: none;
+    margin: 10px auto; /* Centered horizontally and with margin top and bottom */
+    white-space: nowrap; /* Ensures the text stays on one line */
+    text-align: center; /* Center the text */
+}
+
+.user-icon a {
+    color: inherit; /* This will make the color the same as the parent element */
+    text-decoration: none; /* Removes the underline from the link */
+}
+
+.user-icon:hover {
+    background-color: #555;
+}
+
+.main-container {
+    margin: 0px auto; /* Reduced margin from top */
+    width: 300px;
+    background-color: #212121;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.main-form .form-group {
+    margin-bottom: 5px; /* Reduced vertical space between form groups */
+}
+
+.main-data  {
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+    font-family: 'Vazirmatn', sans-serif;
+}
+.main-form label {
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.main-form input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.main-form textarea {
+    background-color: #272727;
+    color: #fff;
+    border: 0.2px solid #ccc;
+    border-radius: 3px;
+    font-family: 'Vazirmatn', sans-serif;
+    padding: 5px;
+    resize: none;
+}
+
+.button-container {
+    display: flex !important;
+    justify-content: flex-end !important;
+}
+button:disabled:hover {
+    background-color: initial; /* Keep original background color */
+    cursor: not-allowed; /* Show appropriate cursor */
+}
+button:disabled {
+    background-color: #ccc; /* Gray out the button */
+    color: #888;           /* Lighten the text */
+    cursor: not-allowed;   /* Change cursor to indicate it's disabled */
+    opacity: 0.5;          /* Add a dim effect */
+}
+/* Face Match and Face Real Group */
+.group-face label {
+    background-color: #1c2e35; /* Light green */
+  
+  
+    display: inline-block;
+    width: 100%;
+}
+
+/* Physical Screen, Unicolor, Screen Shot Group */
+.group-screen label {
+    background-color: #39291b; /* Light red */
+   
+
+    display: inline-block;
+    width: 100%;
+}
+
+/* Damaged Document, IDV Group */
+.group-doc label {
+    background-color: #2c1c1c; /* Light blue */
+   
+  
+    display: inline-block;
+    width: 100%;
+}
+
+.main-form .btn-primary {
+    width: 25%;
+    padding: 6px;
+    margin-right: 12px;
+    font-size: 16px;
+    background-color: #77edd1;
+    border: none;
+    color: #000000;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.main-form .btn-secondary {
+    width: 25%;
+    padding: 6px;
+    margin-right: 12px;
+    font-size: 16px;
+    background-color: #212121;
+    border: none;
+    color: #77edd1;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.main-form .btn-secondary:hover {
+    background-color: #424242;
+}
+
+.main-form button:hover {
+    background-color: #94f9e1;
+}
+
+.error-message {
+    color: red;
+    font-family: 'Vazirmatn', sans-serif;
+    margin-top: 10px; /* Added margin top */
+}
+
+.notification {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 3px;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+.notification.success {
+    background-color: #77edd1;
+    color: #000;
+}
+
+.notification.error {
+    background-color: #f44336;
+    color: #fff;
+}
+
+
+/* Tooltip text */
+[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+    bottom: 125%; /* Position above the emoji */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; /* Delay effect */
+}
+
+/* Tooltip delay effect */
+[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+/* Styling for emojis to ensure alignment */
+[data-tooltip] {
+    top: 5px;
+    position: relative;
+    cursor: default; /* Prevent cursor change on hover */
+    font-size: 25px; /* Ensures consistent size for Unicode emojis */
+    line-height: 1; /* Adjust line height to avoid extra spacing */
+    display: inline-flex;
+    align-items: center; /* Centers emojis vertically */
+    vertical-align: center;
+}
+
+[data-tooltip] img {
+    width: 24px; /* Matches font-size for consistency */
+    height: 24px;
+    line-height: 1;
+    vertical-align: middle; /* Aligns images to text baseline */
+}
+/* Ensure no space between reply text and reactions */
+.reply-item {
+    margin: 0;
+    padding: 0;
+}
+
+/* Reduce margin and padding for reply reactions */
+.reply-reactions {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin-bottom: 14px; /* Adjust this for minimal spacing */
+    line-height: 1.2; /* Tighter line height for closer spacing */
+}
