@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Ask a question",
-  "version": "1.0",
-  "description": "This Chrome extension enables Verification Specialists to seamlessly post questions and engage in conversations on Slack without leaving their current session. It simplifies workflows by integrating directly with Slack and keeping the process within the browser.",
+  "version": "3.3",
+  "description": "This Chrome extension enables Verification Specialists to seamlessly post questions to Slack",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -28,10 +28,20 @@
     "service_worker": "background.js"
   },
   "host_permissions": [
-    "http://*/",
-    "https://*/"
+    "https://vt.penguin-eu.vrff.io/manual-assignments/*"
   ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "commands": {
+  "_execute_action": {
+    "suggested_key": {
+      "default": "Alt+X",
+      "mac": "Command+X"
+    },
+    "description": "Open the extension popup"
   }
+}
+
+  
 }

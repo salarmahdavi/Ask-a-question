@@ -1,89 +1,544 @@
+/* Global Reset & Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-family: 'Vazirmatn', sans-serif;
+    --main-color-1: #000000;
+    --main-color-2: #ffffff;
+    --primary-bg: #212121;
+    --secondary-bg: #272727;
+    --accent-color: #77edd1;
+    --text-color: #ffffff;
+    --border-color: #ccc;
+    --hover-bg-: #94f9e1;
+    --disable-button-1: #ccc;
+    --disable-button-2: #888;
+    --btn-text-color: #000000;
+    --btn-hover-bg: #5cbea7;
+    --button-hover: #555;
+    --user-button-hover: #494030;
+    --user-icon-text: #f59e0b;
+    --user-icon-bg: #423520;
+    --question-bg: #2d2d2d;
+    --reply-bg: #1F2A26;
+    --reply-border: #386D57;
+    --notification-bg: #f44336;
+    --background-color-legit: #232c27;
+    --background-color-face: #1c2e35;
+    --background-color-screen: #39291b;
+    --background-color-doc: #2c1c1c;
+    --background-color-policy: #181818;
+    --scrollbar-background: #1e1e1e;
+    --scrollbar-thumb: #555;
+    --scrollbar-thumb-hover: #777;
+}
+/* Light Mode */
+:root.light-mode {
+    --main-color-1: #ffffff;
+    --main-color-2: #000000;
+    --primary-bg: #ffffff;
+    --secondary-bg: #e8e8e8;
+    --accent-color: #145454;
+    --text-color: #000000;
+    --border-color: #dddddd;
+    --hover-bg: #d4f5e4;
+    --disable-button-1: #e0e0e0;
+    --disable-button-2: #bbbbbb;
+    --btn-text-color: #ffffff;
+    --btn-hover-bg: #289a9a;
+    --button-hover: #d3d3d3;
+    --user-button-hover: #ffefd7;
+    --user-icon-text: #c58914;
+    --user-icon-bg: #ffdfaf;
+    --question-bg: #fafafa;
+    --reply-bg: #e8f4ea;
+    --reply-border: #b2d6c5;
+    --notification-bg: #e57373;
+    --background-color-legit: #f7fcfb;
+    --background-color-face: #eaf3f5;
+    --background-color-screen: #f4ebe4;
+    --background-color-doc: #f9e9e9;
+    --background-color-policy: #ffffff;
+    --scrollbar-background: #f0f0f0;
+    --scrollbar-thumb: #c0c0c0;
+    --scrollbar-thumb-hover: #a0a0a0;
+}
+
+/* Base Styles */
 body {
-    font: 5.5px 'Vazirmatn', sans-serif; /* Reduced font size to 75% */
-    background-color: #212121;
+    font: 12.5px var(--font-family);
+    background-color: var(--primary-bg);
     margin: 0;
     overflow-x: hidden;
     overflow-y: auto;
+    min-width: 300px;
+    padding: 10px;
+}
+
+h1, h2, h3, h4, p, label {
+    text-align: left; /* Align text to the left by default */
+    color: var(--text-color);
 }
 
 a {
-    color: #ffffff;
-    font-family: 'Vazirmatn', sans-serif;
-}
-h1 {
-    color: white;
-}
-.login-container {
-    margin: 50px auto;
-    width: 300px;
-    background-color: #212121;
-    padding: 20px;
-    border-radius: 5px;
-    /* border: 1px solid #3d3d3d; removed the border */
+    color: var(--accent-color);
+    text-decoration: none;
 }
 
-.login-form .form-group {
-    margin-bottom: 20px;
+a:hover {
+    text-decoration: underline;
 }
 
-.login-form label {
-    color: white;
-    display: block;
-    margin-bottom: 5px;
-    font-family: 'Vazirmatn', sans-serif;
-}
-
-.login-form input[type="text"],
-.login-form input[type="password"] {
-    width: 92%;
-    padding: 5px;
-    font-size: 16px;
-    border: 0.2px solid #ccc;
-    border-radius: 3px;
-    font-family: 'Vazirmatn', sans-serif;
-    background-color: #272727;
-    color: #fff;
-}
-
-.button-container {
-    display: flex !important;
-    justify-content: flex-end !important;
-}
-
-.login-form .btn-primary {
-    width: 25%;
-    padding: 6px;
-    margin-right: 12px;
-    font-size: 16px;
-    background-color: #77edd1;
-    border: none;
-    color: #000000;
-    border-radius: 3px;
-    cursor: pointer;
-    font-family: 'Vazirmatn', sans-serif;
-}
-.login-form .btn-secondary {
-    width: 25%;
-    padding: 6px;
-    margin-right: 12px;
-    font-size: 16px;
-    background-color: #212121;
-    border: none;
-    color: #77edd1;
-    border-radius: 3px;
-    cursor: pointer;
-    font-family: 'Vazirmatn', sans-serif;
-}
-.login-form .btn-secondary:hover {
-    background-color: #424242;
-}
-
-.login-form button:hover {
-    background-color: #94f9e1;
-}
 
 .error-message {
-    color: red;
-    font-family: 'Vazirmatn', sans-serif;
+    color: var(--notification-bg);
+    font-family: var(--font-family);
+    margin-top: 10px;
 }
 
+/* Scrollbar */
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--scrollbar-background);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+/* Containers */
+.login-container,
+.main-container {
+    width: 300px;
+    background-color: var(--primary-bg);
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 0px;
+}
+
+label {
+    color: var(--text-color);
+    display: block;
+    margin-bottom: 5px;
+    font-family: var(--font-family);
+    font-size: 1em;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    border: 0.2px solid var(--border-color);
+    border-radius: 5px;
+    font-family: var(--font-family);
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
+    resize: none;
+}
+textarea:focus {
+    outline: none; /* Remove default browser outline */
+    box-shadow: 0 0 8px rgba(119, 237, 209, 0.8); /* Glow effect */
+    border-color: var(---accent-color); /* Optional: Change border color */
+}
+
+input[type="checkbox"] {
+    margin: 7px 3px 7px 7px;
+    vertical-align: middle; /* Aligns the checkbox with the text */
+}
+
+/* Buttons */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+.theme-toggle {
+    display: inline-block;
+    width: 100%;
+    background-color: var(--accent-color);
+    color: var(--main-color-1);   
+    font-size: 12px; /* Smaller font size for better alignment */
+    padding: 4px 8px; /* Adjust padding for better balance */
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    text-align: center; /* Ensures the text is centered */
+    line-height: 1.4; /* Adjusts line spacing for readability */
+    transition: background-color 0.3s ease;
+}
+.btn-primary,
+.btn-secondary,
+.send-section button {
+    padding: 8px 14px 4px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    width: 20%;
+    margin-right: 12px;
+    background-color: var(--accent-color);
+    color: var(--btn-text-color);
+}
+
+.btn-primary:hover,
+.send-section button:hover {
+    background-color: var(--btn-hover-bg);
+}
+
+
+button:disabled {
+    background-color: var(--border-color);
+    color: var(--disable-button-2);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* User Icon */
+.user-icon {
+    padding: 8px 15px;
+    border-radius: 10px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--user-icon-text);
+    background-color: var(--user-icon-bg);
+    margin: 10px auto;
+    white-space: nowrap;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.user-icon a {
+    color: inherit;
+}
+
+.user-icon:hover {
+    background-color: var(--user-button-hover);
+}
+
+/* Tooltip */
+[data-tooltip] {
+    position: relative;
+    top: 5px;
+    font-size: 25px;
+    display: inline-flex;
+    align-items: center;
+    cursor: default;
+}
+
+[data-tooltip] img {
+    width: 24px;
+    height: 24px;
+}
+
+.my-tooltip {
+    position: fixed;
+    background: var(--main-color-2);
+    color: var(--main-color-1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 999;
+    pointer-events: none;
+    max-width: 200px;
+    word-wrap: break-word;
+}
+
+/* Dropdown Menu */
+.user-menu {
+    position: relative;
+    display: inline-block;
+    font-family: var(--font-family);
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 90%;
+    right: 0;
+    background-color: var(--question-bg);
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    min-width: 100px;
+    z-index: 1000;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-menu a {
+    color: var(--accent-color);
+    padding-top: 3px;
+    font-size: 12px;
+    height: 24px;
+    line-height: 20px;
+    text-align: center;
+    display: block;
+    margin: 0;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--button-hover);
+    border-radius: 5px;
+}
+
+/* Send Section */
+.send-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--secondary-bg);
+    border-radius: 5px;
+}
+
+.send-section textarea {
+    background-color: var(--primary-bg);
+    margin-bottom: 10px;
+}
+.send-section textarea:focus {
+    background-color: var(--primary-bg);
+    margin-bottom: 10px;
+}
+
+
+.send-section .button-container {
+    justify-content: flex-end;
+}
+
+.styled-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.styled-link:hover {
+    text-decoration: underline;
+}
+
+.link-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+    fill: rgb(144, 197, 255);
+}
+
+/* Existing Data & Replies */
+.existing-data-header {
+    padding-bottom: 10px;
+}
+
+.user-name {
+    padding-left: 15px;
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.existing-data-question {
+    border: 1px solid var(--border-color);
+    background-color: var(--question-bg);
+    color: var(--text-color);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.existing-data-question h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.selected-checks,
+.question-message {
+    font-size: 1em;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.existing-data-replies {
+    margin-top: 20px;
+}
+
+.existing-data-replies h4 {
+    font-size: 1.2em;
+    color: var(--button-hover);
+    margin-bottom: 10px;
+}
+
+.replies-list {
+    list-style: none;
+    padding: 0;
+}
+
+.reply-item {
+    padding: 7px 10px;
+    margin-bottom: 10px;
+    background-color: var(--reply-bg);
+    border: 1px solid var(--reply-border);
+    border-radius: 10px;
+}
+
+.reply-user {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.reply-text {
+    display: inline-block;
+    margin-left: 5px;
+    color: var(--text-color);
+}
+
+.reply-reactions {
+    font-size: 1em;
+    color: var(--disable-button-2);
+}
+
+.reaction-icon {
+    margin-right: 5px;
+}
+
+/* Group Label Colors */
+.group-face label,
+.group-screen label,
+.group-legit label,
+.group-policy label,
+.group-doc label {
+    border-radius: 5px;
+    display: inline-block;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    vertical-align: middle; /* Ensures text aligns with the checkbox */
+    
+}
+
+.group-legit label {
+    background-color: var(--background-color-legit);
+} 
+
+.group-face label {
+    background-color: var(--background-color-face);
+}
+
+.group-screen label {
+    background-color: var(--background-color-screen);
+}
+
+.group-doc label {
+    background-color: var(--background-color-doc);
+}
+.group-policy label {
+    background-color: var(--background-color-policy);
+} 
+
+/* Notifications */
+.notification {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 3px;
+    font-family: var(--font-family);
+}
+
+.notification.success {
+    background-color: var(--accent-color);
+    color: var(--main-color-1);
+}
+
+.notification.error {
+    background-color: var(--notification-bg);
+    color: var(--main-color-2);
+}
+
+/* Login Section */
+#content {
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, sans-serif; /* Kept this for fallback */
+}
+
+#user-info {
+    display: none;
+}
+
+#login-section {
+    display: flex;
+    justify-content: center;
+}
+
+#login {
+    transition: transform 0.2s ease-in-out;
+}
+
+#login:hover {
+    transform: scale(1.05);
+}
+
+.loading {
+    background: url('spinner.gif') no-repeat center center;
+    background-size: 15px 15px;
+}
+
+/* Spinner Overlay */
+#spinner-overlay {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}

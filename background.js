@@ -1,6 +1,36 @@
-chrome.runtime.onInstalled.addListener(() => {
-  console.log('Extension installed');
+
+chrome.runtime.onInstalled.addListener(async () => {
+  try {
+      console.log("Fetching and caching emojis...");
+      // Fetch custom emojis from the server
+      const customEmojis = await fetch('https://question-bot.replit.app/api/emojis').then(res => res.json());
+
+      // Fetch Unicode emojis from local JSON
+      const unicodeEmojiData = await fetch(chrome.runtime.getURL('/assets/emoji.json')).then(res => res.json());
+
+      // Convert Unicode emoji JSON into a lookup map
+      const unicodeEmojiMap = {};
+      unicodeEmojiData.forEach(emoji => {
+          unicodeEmojiMap[emoji.short_name] = emoji.unified
+              .split('-')
+              .map(code => String.fromCodePoint(parseInt(code, 16)))
+              .join('');
+          if (emoji.short_names) {
+              emoji.short_names.forEach(name => {
+                  unicodeEmojiMap[name] = unicodeEmojiMap[emoji.short_name];
+              });
+          }
+      });
+
+      // Store emojis in Chrome storage
+      chrome.storage.local.set({ emojiMap: customEmojis, unicodeEmojiMap }, () => {
+          console.log("Emojis cached successfully.");
+      });
+  } catch (error) {
+      console.error("Failed to fetch emojis during installation:", error);
+  }
 });
+
 
 // Function to initiate OAuth flow
 function initiateOAuth() {
@@ -58,33 +88,24 @@ async function authenticateWithSlack() {
     const data = await response.json();
     console.log('[DEBUG] Token exchange response:', data);
 
-    if (response.ok && data.message === "Tokens saved successfully!") {
-      console.log('[DEBUG] Authentication succeeded:', data);
-
+    if (response.ok && data.accessToken) {
       chrome.storage.local.set({
         accessToken: data.accessToken,
-        userId: data.userId, // Save userId from the backend response
+        userId: data.userId,
         fullName: data.fullName,
-        loggedIn: true
-      });
-
-      chrome.runtime.sendMessage({
-        action: 'authSuccess',
-        fullName: data.fullName,
+        loggedIn: true,
+        authStatus: 'success'
       });
     } else {
-      console.error('[ERROR] Backend error:', data.error || "Unknown error");
-      chrome.runtime.sendMessage({
-        action: 'authError',
-        error: data.error || "Failed to exchange code for tokens",
+      chrome.storage.local.set({
+        authStatus: 'error',
+        errorMsg: data.error || "Failed to exchange code for tokens"
       });
     }
+    
   } catch (error) {
     console.error('[ERROR] Authentication failed:', error.message);
-    chrome.runtime.sendMessage({
-      action: 'authError',
-      error: error.message || "An unexpected error occurred.",
-    });
+
   }
 }
 
@@ -92,6 +113,7 @@ async function authenticateWithSlack() {
 // Listen for messages from popup.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log('[DEBUG] Message received in popup:', request);
+  
 
   if (request.action === 'authenticate') {
     // Handle authentication flow

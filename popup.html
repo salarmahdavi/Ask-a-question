@@ -2,57 +2,28 @@
 <html>
 <head>
   <title>My Chrome Extension</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      min-width: 200px;
-      padding: 10px;
-    }
-    #user-info {
-      display: none;
-    }
-    #login {
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    #logout {
-      padding: 5px 10px;
-      font-size: 14px;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-    .notification {
-      display: none;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-    }
-    .notification.success {
-      background-color: #d4edda;
-      color: #155724;
-    }
-    .notification.error {
-      background-color: #f8d7da;
-      color: #721c24;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+
+
 </head>
 <body>
   <div id="content">
     <div id="login-section">
-        <img 
-          id="login" 
-          src="assets/sign_in_with_slack@2x.png" 
-          alt="Sign in with Slack" 
-          style="cursor: pointer; width: 174px; height: 40px;"
-        />
-      </div>
+      <img 
+        id="login" 
+        src="assets/sign_in_with_slack@2x.png" 
+        alt="Sign in with Slack"
+      />
+    </div>
     <div id="user-info">
       <p>Welcome, <span id="fullName"></span>!</p>
-      <button id="logout">Logout</button>
+    
     </div>
     <div id="notification" class="notification"></div>
+  </div>
+
+  <div id="spinner-overlay">
+    <div class="spinner"></div>
   </div>
 
   <script src="popup.js"></script>
